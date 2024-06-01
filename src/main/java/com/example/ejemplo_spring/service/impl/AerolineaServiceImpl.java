@@ -3,12 +3,16 @@ package com.example.ejemplo_spring.service.impl;
 import com.example.ejemplo_spring.dao.AerolineaRepository;
 import com.example.ejemplo_spring.entity.Aerolinea;
 import com.example.ejemplo_spring.service.AerolineaService;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.List;
-
+@Service
+// bean
 public class AerolineaServiceImpl implements AerolineaService {
     private AerolineaRepository aerolineaRepository;
+    public AerolineaServiceImpl(AerolineaRepository aerolineaRepository){
+        this.aerolineaRepository = aerolineaRepository;
+    }
     @Override
     public Aerolinea agregar(Aerolinea aerolinea) {
         // verificar que no se repita el nombre

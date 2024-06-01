@@ -2,6 +2,7 @@ package com.example.ejemplo_spring.controller;
 
 import com.example.ejemplo_spring.dao.AerolineaRepository;
 import com.example.ejemplo_spring.entity.Aerolinea;
+import com.example.ejemplo_spring.service.AerolineaService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -10,10 +11,12 @@ import java.util.Optional;
 @RequestMapping("api/v1/aerolinea")
 public class AerolineaController {
     private AerolineaRepository aerolineaRepository;
+    private AerolineaService aerolineaService;
 
-    public AerolineaController(AerolineaRepository aerolineaRepository)
+    public AerolineaController(AerolineaRepository aerolineaRepository, AerolineaService aerolineaService)
     {
         this.aerolineaRepository = aerolineaRepository;
+        this.aerolineaService=aerolineaService;
     }
     @PostMapping("/crear")
     public Aerolinea aerolineaCrear(@RequestBody Aerolinea aerolinea)
@@ -21,9 +24,12 @@ public class AerolineaController {
         // creando la aerolinea
         System.out.println("Ingresamos al endpoint");
 
-        Aerolinea aerolineaSaved = aerolineaRepository.save(aerolinea);
+        //Aerolinea aerolineaSaved = aerolineaRepository.save(aerolinea);
 
-        return aerolineaSaved;
+        //return aerolineaSaved;
+
+        Aerolinea aerolinea1 = aerolineaService.agregar(aerolinea);
+        return aerolinea1;
     }
 
     @GetMapping("/find/{id}")
