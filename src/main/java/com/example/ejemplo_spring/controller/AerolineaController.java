@@ -35,17 +35,6 @@ public class AerolineaController {
     @GetMapping("/find/{id}")
     public Aerolinea findById(@PathVariable int id)
     {
-        // Aerolinea aerolineaFound = aerolineaRepository.findById(id).orElse(null);
-
-        Optional<Aerolinea> optionalAerolinea = aerolineaRepository.findById(id);
-
-        if(optionalAerolinea.isEmpty()) // devuelve verdadero en el caso de que el optional este vacion
-        {
-            return null;
-        }
-        else {
-            Aerolinea aerolineaFound = optionalAerolinea.get();
-            return aerolineaFound;
-        }
+        return aerolineaService.buscarPorId(id);
     }
 }

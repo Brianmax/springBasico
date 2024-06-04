@@ -6,6 +6,8 @@ import com.example.ejemplo_spring.service.AerolineaService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Optional;
+
 @Service
 // bean
 public class AerolineaServiceImpl implements AerolineaService {
@@ -34,7 +36,17 @@ public class AerolineaServiceImpl implements AerolineaService {
 
     @Override
     public Aerolinea buscarPorId(int id) {
-        return null;
+        // buscar por id
+
+        Optional<Aerolinea> aerolineaOptional = aerolineaRepository.findById(id);
+
+        if(aerolineaOptional.isPresent())
+        {
+            return aerolineaOptional.get();
+        }
+        else {
+            return null;
+        }
     }
 
     @Override
