@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.swing.*;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -23,4 +24,11 @@ public class Piloto {
     @JoinColumn(name = "id_aerolinea_fk")
     private Aerolinea aerolinea;
 
+    @ManyToMany
+    @JoinTable(
+          name = "vuelo_piloto",
+            joinColumns = @JoinColumn(name = "id_piloto_fk"),
+            inverseJoinColumns = @JoinColumn(name = "id_vuelo_fk")
+    )
+    private Set<Vuelo> vuelos;
 }
